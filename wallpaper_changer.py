@@ -27,10 +27,14 @@ def set_wallpaper(path_to_file):
     # print message
     print("Set wallpapers ...")
 
-    screen_1 = "/backdrop/screen0/monitorDP-0/workspace0/last-image"
-    screen_2 = "/backdrop/screen0/monitorDVI-D-0/workspace0/last-image"
-    os.system("xfconf-query -c xfce4-desktop -p %s -s %s" % (screen_1, path_to_file))
-    os.system("xfconf-query -c xfce4-desktop -p %s -s %s" % (screen_2, path_to_file))
+    ### set background for 2 displays xfce4
+    # screen_1 = "/backdrop/screen0/monitorDP-0/workspace0/last-image"
+    # screen_2 = "/backdrop/screen0/monitorDVI-D-0/workspace0/last-image"
+    # os.system("xfconf-query -c xfce4-desktop -p %s -s %s" % (screen_1, path_to_file))
+    # os.system("xfconf-query -c xfce4-desktop -p %s -s %s" % (screen_2, path_to_file))
+
+    ### set background using feh
+    os.system("feh --bg-fill %s" % (path_to_file))
 
 # function for changing wallpapers
 def change_wallpapers():
@@ -40,10 +44,10 @@ def change_wallpapers():
         image = load_image()
 
         # save image
-        save_image("/home/viktor/Изображения/current_wallpaper.jpg", image)
+        save_image("/home/viktor/.config/current_wallpaper.jpg", image)
 
         # set wallpaper
-        set_wallpaper("/home/viktor/Изображения/current_wallpaper.jpg")
+        set_wallpaper("/home/viktor/.config/current_wallpaper.jpg")
 
     except:
         # print error
